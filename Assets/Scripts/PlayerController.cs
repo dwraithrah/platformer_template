@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     //this variable will set how fast player will move when moving in one direction or the other
-    public float speed = .25f;
+    public float speed = 5.0f;
     public float jumpValue = 15f;
 
 
@@ -19,11 +19,45 @@ public class PlayerController : MonoBehaviour {
     void Start () {
         playerBody = this.GetComponent<Rigidbody2D>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    //used to ensure physics has updated with movement. using vectors and rigid bodies so that collision detection is activated.
+    private void FixedUpdate()
+    {
+        //if holding right arrow move right
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            playerBody.velocity = Vector2.right * speed;
+        }
+
+        //if holding left arrow, move left
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            playerBody.velocity = Vector2.left * speed;
+        }
+
+        //if hitting space bar, jump
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            playerBody.velocity = Vector2.up * jumpValue;
+        }
+        //Store the current horizontal input in the float moveHorizontal.
+        float moveHorizontal = Input.GetAxis("Horizontal");
+
+        //Store the current vertical input in the float moveVertical.
+        float moveVertical = Input.GetAxis("Vertical");
+
+        //Use the two store floats to create a new Vector2 variable movement.
+        Vector2 movement = new Vector2(moveHorizontal, moveVertical);
+
+        //Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
+        playerBody.AddForce(movement * speed);
+    }
+
+    // Update is called once per frame
+    void Update () {
 
         //move right
+        /*
         if (Input.GetKey(KeyCode.RightArrow))
         {
             Vector2 position = this.transform.position;
@@ -54,6 +88,6 @@ public class PlayerController : MonoBehaviour {
             playerBody.AddForce(Vector2.up * jumpValue, ForceMode2D.Impulse);
         }
 
-        
+        */
 	}
 }
