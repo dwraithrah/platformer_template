@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/SamplePlatformer.unity
+- path: Assets/SamplePlatformerStage2.unity
   isLoaded: 1
   isActive: 1
