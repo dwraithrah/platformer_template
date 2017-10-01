@@ -4,4 +4,16 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/Level.unity
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/NeverUnloadScene.unity
+    guid: 0e2148fe3759b0f4794f357c8f882142
+  - enabled: 1
+    path: Assets/SamplePlatformer.unity
+    guid: a17037898ca29e04c849cb1f69afc424
+  - enabled: 1
+    path: Assets/SamplePlatformerStage2.unity
+    guid: d32eb379223eeb2428a23d00384ee7d7
