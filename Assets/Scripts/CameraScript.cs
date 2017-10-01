@@ -13,7 +13,8 @@ public class CameraScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+        cameraOffset.x = 4;
+        cameraOffset.z = -5;
 	}
 	
 	// Update is called once per frame

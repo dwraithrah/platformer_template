@@ -1,35 +1,33 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
+using UnityEngine.UI;
 
-public class CoinScript : MonoBehaviour {
+public class CoinScript : MonoBehaviour
+{
 
-    //object that detects collisions with player
-    private Collider player;
-    private Collider coin;
 
-	// Use this for initialization
-	void Start () {
-
-        //assigns collider object the collider for the player
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Collider>();
-        coin = this.gameObject.GetComponent<Collider>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
-        //if there is a collision, destroy the coin and add +10 to the score.
-        
-	}
-
-    private void OnTriggerEnter2D(Collision2D collision)
+    // Use this for initialization
+    void Start()
     {
-        if(collision.gameObject.tag == "Player")
-        {
-            Destroy(this);
-        }
+        
     }
 
+    // Update is called once per frame
+    void Update()
+    {
 
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        //if player collider runs into coin collider, destroy coin
+        if (other.gameObject.CompareTag("Player"))
+        {
+            //pick up coin, increase score
+            DataHolderController.holdScore += 10;
+            Destroy(gameObject);
+            
+        }
+            
+    }
 }
