@@ -17,6 +17,7 @@ TagManager:
   - Text
   - Canvas
   - Data Holder
+  - PowerUp
   layers:
   - Default
   - TransparentFX
