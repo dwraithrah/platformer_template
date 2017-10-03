@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour {
     // private Animator anim;   //Stores component reference to animator.  commented out due to lack of animation in this example.
     private Rigidbody2D rb2d;  //Will store reference to rigid body
 
+    private bool powerUpActive = false;//will tell if power-up is up or not
 
 
     // Use this for initialization when script is loadede, before game starts. 
@@ -62,6 +63,13 @@ public class PlayerController : MonoBehaviour {
         if(DataHolderController.playerHealth == 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        //if player presses A button and if there is something in inventory, power-up will be used.
+        if (Input.GetKeyDown("a") && InventoryControl.hasInventory) //if there is a power-up in inventory and player hits the a button
+        {
+            InventoryControl.hasInventory = false; //remove power-up from inventory
+            powerUpActive = true;  //power-up is activated.  
         }
 	}
 
@@ -105,8 +113,14 @@ public class PlayerController : MonoBehaviour {
     {
         if (other.gameObject.tag == "Enemy")
         {
-
-            DataHolderController.playerHealth -= 1;
+            if (!powerUpActive)//if power up is not active
+                DataHolderController.playerHealth -= 1; //player takes damage
+            else
+            {
+                Destroy(other.gameObject); //enemy destroyed
+                powerUpActive = false;
+                InventoryControl.hasInventory = false;
+            }
 
         }
     }
